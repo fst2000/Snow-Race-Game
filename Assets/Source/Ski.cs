@@ -8,22 +8,20 @@ public class Ski
     Vector3 localCenter;
     Vector3 size;
     float drift;
-    public Ski(Vector3 localCenter, Vector3 size,float drift)
+    BoxCollider collider;
+    Rigidbody rigidbody;
+    public Ski(GameObject gameobject, Vector3 localCenter, Vector3 size,float drift)
     {
         this.localCenter = localCenter;
         this.size = size;
         this.drift = drift;
+        collider =  gameobject.AddComponent<BoxCollider>();
+        collider.center = localCenter;
+        collider.size = size;
+        rigidbody = gameobject.GetComponent<Rigidbody>();
     }
-    public Vector3 GetLocalCenter()
+    public void Slide()
     {
-        return localCenter;
-    }
-    public Vector3 GetSize()
-    {
-        return size;
-    }
-    public float GetDrift()
-    {
-        return drift;
+        rigidbody.AddRelativeForce(Vector3.forward);
     }
 }

@@ -10,4 +10,8 @@ public class Slide : MonoBehaviour
     {
         snowCat = new SnowCat(gameObject);
     }
+    private void Update()
+    {
+        snowCat.Slide();
+    }
 }

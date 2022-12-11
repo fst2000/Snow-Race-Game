@@ -19232,6 +19232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2070844597}
   - component: {fileID: 2070844595}
+  - component: {fileID: 2070844598}
   m_Layer: 2
   m_Name: SnowCat
   m_TagString: Untagged
@@ -19267,6 +19268,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2070844598
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070844594}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0.41, z: 0}
 --- !u!1 &2071868040 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 801255047517529749, guid: 2da5e2c8ccb7d8441afe7538e36f0138, type: 3}

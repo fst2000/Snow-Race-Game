@@ -18,25 +18,19 @@ public class SnowCat
         this.rigidbody = gameObject.AddComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        rigidbody.centerOfMass = new Vector3(0,0,0);
 
-        skiL = new Ski(Vector3.left, new Vector3(0.2f, 0.05f, 1f), 0.7f);
-        skiR = new Ski(Vector3.right, new Vector3(0.2f, 0.05f, 1f), 0.7f);
-        skiF = new Ski(Vector3.forward, new Vector3(0.2f, 0.05f, 1f), 0.7f);
-
-        skiLCollider = new BoxCollider();
-        skiLCollider.size = skiL.GetSize();
-        skiLCollider.center = skiL.GetLocalCenter();
-
-        skiRCollider = new BoxCollider();
-        skiRCollider.size = skiR.GetSize();
-        skiRCollider.center = skiR.GetLocalCenter();
-
-        skiFCollider = new BoxCollider();
-        skiFCollider.size = skiF.GetSize();
-        skiFCollider.center = skiF.GetLocalCenter();
+        skiL = new Ski(gameObject, new Vector3(-0.28f,0,-0.2f), new Vector3(0.2f, 0.05f, 0.9f), 0.7f);
+        skiR = new Ski(gameObject, new Vector3(0.28f,0,-0.2f), new Vector3(0.2f, 0.05f, 0.9f), 0.7f);
+        skiF = new Ski(gameObject, new Vector3(0,0,0.75f), new Vector3(0.2f, 0.05f, 0.5f), 0.65f);
     }
     public void Slide()
     {
+        Ski[] skies = {skiL,skiR, skiF };
+        foreach (Ski ski in skies)
+        {
+            ski.Slide();
+        }
 
     }
 }

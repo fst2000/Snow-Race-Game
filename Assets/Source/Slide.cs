@@ -5,13 +5,31 @@ using UnityEngine.Assertions.Must;
 
 public class Slide : MonoBehaviour
 {
-    SnowCat snowCat;
+    [SerializeField] SnowCat snowCat;
+    Vector3 collisionNormal;
+    Vector3 collisionPoint;
     private void Start()
     {
-        snowCat = new SnowCat(gameObject);
+        snowCat.Initialize(gameObject);
     }
     private void Update()
     {
-        snowCat.Slide();
+        snowCat.Control();
+    }
+    void OnCollisionStay(Collision collision)
+    {
+        ContactPoint[] contacts = collision.contacts;
+        foreach (ContactPoint contact in contacts)
+        {
+            collisionNormal = contact.normal;
+            collisionPoint = contact.point;
+            snowCat.SnowCatSlide(contact.normal,contact.point);
+            Debug.Log(contacts.Length);
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(collisionPoint,collisionPoint + collisionNormal);
     }
 }

@@ -5,23 +5,38 @@ using UnityEngine;
 
 public class Ski
 {
+    Vector3 localDirection;
     Vector3 localCenter;
-    Vector3 size;
     float drift;
-    BoxCollider collider;
+    GameObject gameObject;
     Rigidbody rigidbody;
-    public Ski(GameObject gameobject, Vector3 localCenter, Vector3 size,float drift)
+    CapsuleCollider collider;
+    public Ski(GameObject gameobject, Vector3 localCenter, Vector3 size,int colliderAxis, float drift)
     {
+        localDirection = Vector3.forward;
         this.localCenter = localCenter;
-        this.size = size;
         this.drift = drift;
-        collider =  gameobject.AddComponent<BoxCollider>();
+        this.gameObject = gameobject;
+        rigidbody = gameObject.GetComponent<Rigidbody>();
+        
+        collider = gameobject.AddComponent<CapsuleCollider>();
+        collider.radius = (size.x + size.y) * 0.5f;
+        collider.height = size.z;
         collider.center = localCenter;
-        collider.size = size;
-        rigidbody = gameobject.GetComponent<Rigidbody>();
+        collider.direction = colliderAxis;
+        collider.material.dynamicFriction = 0f;
+        collider.material.staticFriction = 0f;
+        collider.material.bounciness = 0f;
     }
-    public void Slide()
+    public void SkiSlide(Vector3 normal, Vector3 point)
     {
-        rigidbody.AddRelativeForce(Vector3.forward);
+        Vector3 slopeDirection = new Vector3(normal.x, 0, normal.z).normalized;
+        Vector3 skiDirection = gameObject.transform.TransformDirection(localDirection);
+        Vector3 slideForce = Vector3.Lerp(skiDirection * Vector3.Dot(slopeDirection, skiDirection), slopeDirection, drift) * 5f;
+        rigidbody.AddForceAtPosition(slideForce,point);
+    }
+    public void UpdateLocalDirection(Quaternion euler)
+    {
+        localDirection = euler * Vector3.forward;
     }
 }

@@ -58,7 +58,16 @@ Shader "Unlit/PineHeightShader"
                 // sample the texture
                 fixed4 upCol = tex2D(_UpTex, i.uv);
                 fixed4 downCol = tex2D(_DownTex, i.uv);
-                fixed4 col = lerp(downCol,upCol,i.textureBlend);
+                fixed4 col;
+                if(i.vertex.y >= _BlendStart)
+                {
+                    col = downCol;
+                }
+                else
+                {
+                    col = upCol;
+                }
+                
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

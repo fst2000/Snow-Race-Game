@@ -5,38 +5,38 @@ using UnityEngine;
 
 public class Ski
 {
-    Vector3 localDirection;
-    Vector3 localCenter;
-    float drift;
-    GameObject gameObject;
+    Transform transform;
     Rigidbody rigidbody;
     CapsuleCollider collider;
-    public Ski(GameObject gameobject, Vector3 localCenter, Vector3 size,int colliderAxis, float drift)
+    Vector3 scale;
+    Vector3 localCenter;
+    Quaternion localDirection;
+    float drift;
+    public Ski(GameObject gameObject, Vector3 center, Vector3 scale, float drift)
     {
-        localDirection = Vector3.forward;
-        this.localCenter = localCenter;
+        this.scale = scale;
         this.drift = drift;
-        this.gameObject = gameobject;
-        rigidbody = gameObject.GetComponent<Rigidbody>();
-        
-        collider = gameobject.AddComponent<CapsuleCollider>();
-        collider.radius = (size.x + size.y) * 0.5f;
-        collider.height = size.z;
-        collider.center = localCenter;
-        collider.direction = colliderAxis;
-        collider.material.dynamicFriction = 0f;
+        localDirection = Quaternion.LookRotation(Vector3.forward);
+        localCenter = center;
+        this.rigidbody = gameObject.GetComponent<Rigidbody>();
+        this.transform = gameObject.transform;
+        collider = gameObject.AddComponent<CapsuleCollider>();
+        collider.center = center;
+        collider.height = scale.z;
+        collider.radius = scale.x * 0.5f;
+        collider.direction = 2;
         collider.material.staticFriction = 0f;
-        collider.material.bounciness = 0f;
+        collider.material.dynamicFriction = 0f;
+        collider.material.frictionCombine = PhysicMaterialCombine.Minimum;
     }
     public void SkiSlide(Vector3 normal, Vector3 point)
     {
-        Vector3 slopeDirection = new Vector3(normal.x, 0, normal.z).normalized;
-        Vector3 skiDirection = gameObject.transform.TransformDirection(localDirection);
-        Vector3 slideForce = Vector3.Lerp(skiDirection * Vector3.Dot(slopeDirection, skiDirection), slopeDirection, drift) * 5f;
-        rigidbody.AddForceAtPosition(slideForce,point);
+        float frictionScalar = Vector3.Dot(transform.TransformDirection(localDirection * Vector3.right), -rigidbody.velocity) * scale.x * scale.z * 100 * drift;
+        rigidbody.AddForceAtPosition(transform.right * frictionScalar, transform.TransformPoint(localCenter));
     }
-    public void UpdateLocalDirection(Quaternion euler)
+    public void SkiRotate(float angle)
     {
-        localDirection = euler * Vector3.forward;
+        localDirection = Quaternion.Euler(0,angle,0);
+
     }
 }

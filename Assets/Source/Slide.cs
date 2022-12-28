@@ -14,7 +14,7 @@ public class Slide : MonoBehaviour
     }
     private void Update()
     {
-        snowCat.Control();
+       snowCat.Control();
     }
     void OnCollisionStay(Collision collision)
     {
@@ -24,7 +24,6 @@ public class Slide : MonoBehaviour
             collisionNormal = contact.normal;
             collisionPoint = contact.point;
             snowCat.SnowCatSlide(contact.normal,contact.point);
-            Debug.Log(contacts.Length);
         }
     }
     private void OnDrawGizmos()

@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
 public class Slide : MonoBehaviour
 {
     [SerializeField] SnowCat snowCat;
-    Vector3 collisionNormal;
-    Vector3 collisionPoint;
     private void Start()
     {
         snowCat.Initialize(gameObject);
@@ -16,19 +15,8 @@ public class Slide : MonoBehaviour
     {
        snowCat.Control();
     }
-    void OnCollisionStay(Collision collision)
+    private void FixedUpdate()
     {
-        ContactPoint[] contacts = collision.contacts;
-        foreach (ContactPoint contact in contacts)
-        {
-            collisionNormal = contact.normal;
-            collisionPoint = contact.point;
-            snowCat.SnowCatSlide(contact.normal,contact.point);
-        }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(collisionPoint,collisionPoint + collisionNormal);
+        snowCat.SnowCatSlide();
     }
 }

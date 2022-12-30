@@ -29,10 +29,16 @@ public class Ski
         collider.material.dynamicFriction = 0f;
         collider.material.frictionCombine = PhysicMaterialCombine.Minimum;
     }
-    public void SkiSlide(Vector3 normal, Vector3 point)
+    public void SkiSlide()
     {
-        float frictionScalar = Vector3.Dot(transform.TransformDirection(localDirection * Vector3.right), -rigidbody.velocity) * scale.x * scale.z * 100 * drift;
-        rigidbody.AddForceAtPosition(transform.right * frictionScalar, transform.TransformPoint(localCenter));
+        Vector3 globalCenter = transform.TransformPoint(localCenter);
+        Vector3 skiStart = transform.TransformPoint(localCenter.x,localCenter.y,localCenter.z - (scale.z * 0.5f));
+        Vector3 skiEnd = transform.TransformPoint(localCenter.x, localCenter.y, localCenter.z + (scale.z * 0.5f));
+        if (Physics.CheckCapsule(skiStart, skiEnd, (scale.x * 0.5f) + 0.1f))
+        {
+            float frictionScalar = Vector3.Dot(transform.TransformDirection(localDirection * Vector3.right), -rigidbody.velocity) * scale.x * scale.z * 100 * drift;
+            rigidbody.AddForceAtPosition(transform.right * frictionScalar, globalCenter);
+        }
     }
     public void SkiRotate(float angle)
     {

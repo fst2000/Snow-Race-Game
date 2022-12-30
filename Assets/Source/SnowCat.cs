@@ -22,21 +22,21 @@ public class SnowCat
         this.rigidbody = gameObject.AddComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
-        rigidbody.centerOfMass = new Vector3(0, 0, 0.11f);
+        rigidbody.centerOfMass = new Vector3(0, 0, 0.08f);
         rigidbody.mass = 60f;
-        rigidbody.drag = 0.1f;
+        rigidbody.drag = 0.02f;
         rigidbody.angularDrag = 0.5f;
 
-        skiL = new Ski(gameObject, new Vector3(-0.28f, 0.1f, -0.1f), new Vector3(0.2f, 0.05f, 1.2f), 0.2f);
-        skiR = new Ski(gameObject, new Vector3(0.28f, 0.1f, -0.1f), new Vector3(0.2f, 0.05f, 1.2f), 0.2f);
-        skiF = new Ski(gameObject, new Vector3(0, 0.1f, 0.75f), new Vector3(0.2f, 0.05f, 0.5f), 0.3f);
+        skiL = new Ski(gameObject, new Vector3(-0.28f, 0.1f, -0.1f), new Vector3(0.2f, 0.05f, 1.2f), 0.8f);
+        skiR = new Ski(gameObject, new Vector3(0.28f, 0.1f, -0.1f), new Vector3(0.2f, 0.05f, 1.2f), 0.8f);
+        skiF = new Ski(gameObject, new Vector3(0, 0.1f, 0.75f), new Vector3(0.2f, 0.05f, 0.5f), 0.8f);
     }
-    public void SnowCatSlide(Vector3 normal, Vector3 point)
+    public void SnowCatSlide()
     {
         Ski[] skies = {skiL, skiR, skiF};
         foreach (Ski ski in skies)
         {
-            ski.SkiSlide(normal, point);
+            ski.SkiSlide();
         }
 
     }

@@ -6,7 +6,6 @@ using UnityEngine;
 public class MultipleContact : MonoBehaviour, IContact
 {
     List<ContactPoint> contacts;
-    [SerializeField] new Collider collider;
     bool hasContact;
     void Start()
     {
@@ -23,9 +22,13 @@ public class MultipleContact : MonoBehaviour, IContact
         {
             foreach(var c in contacts)
             {
-                if(c.thisCollider == collider) action(c);
+                action(c);
             }
             hasContact = false;   
         }
+    }
+    void Update()
+    {
+        Debug.Log(hasContact);
     }
 }

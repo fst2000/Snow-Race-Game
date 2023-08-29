@@ -311,19 +311,6 @@ CapsuleCollider:
   m_Height: 0.5723907
   m_Direction: 2
   m_Center: {x: 0, y: 0.1, z: 0.13466626}
---- !u!114 &618909219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618909214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091ae230feddf0b43b71578d9069bc82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: {fileID: 618909218}
 --- !u!114 &618909220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,9 +323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a153a7e7d600c004b90ef7a09498bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contact: {fileID: 618909219}
+  contact: {fileID: 1130238874}
+  collider: {fileID: 618909218}
   rigidbody: {fileID: 1130238871}
-  slideForce: 3
+  slideForce: 10
+  friction: 0.2
 --- !u!1001 &619021683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,7 +430,6 @@ GameObject:
   - component: {fileID: 856579982}
   - component: {fileID: 856579984}
   - component: {fileID: 856579986}
-  - component: {fileID: 856579985}
   m_Layer: 2
   m_Name: SkiL
   m_TagString: Untagged
@@ -487,19 +475,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0.05, z: -0.11}
---- !u!114 &856579985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856579981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091ae230feddf0b43b71578d9069bc82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: {fileID: 856579984}
 --- !u!114 &856579986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,9 +487,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a153a7e7d600c004b90ef7a09498bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contact: {fileID: 856579985}
+  contact: {fileID: 1130238874}
+  collider: {fileID: 856579984}
   rigidbody: {fileID: 1130238871}
-  slideForce: 5
+  slideForce: 20
+  friction: 5000
 --- !u!1 &884250807 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5148817236446094103, guid: 2c778cf1b42073a4482a9e23da298e62, type: 3}
@@ -737,15 +714,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1130238871}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1130238874}
     - targetCorrespondingSourceObject: {fileID: 6278562066881361100, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 618909218}
     - targetCorrespondingSourceObject: {fileID: 6278562066881361100, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 618909220}
-    - targetCorrespondingSourceObject: {fileID: 6278562066881361100, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 618909219}
   m_SourcePrefab: {fileID: 100100000, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
 --- !u!1 &1130238863 stripped
 GameObject:
@@ -781,7 +758,7 @@ Rigidbody:
   m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0.5}
+  m_CenterOfMass: {x: 0, y: 0, z: 0.25}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -797,6 +774,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &1130238874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130238863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091ae230feddf0b43b71578d9069bc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1209329315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -876,7 +865,6 @@ GameObject:
   - component: {fileID: 1575613574}
   - component: {fileID: 1575613576}
   - component: {fileID: 1575613578}
-  - component: {fileID: 1575613577}
   m_Layer: 2
   m_Name: SkiR
   m_TagString: Untagged
@@ -922,19 +910,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 2
   m_Center: {x: 0, y: 0.05, z: -0.11}
---- !u!114 &1575613577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575613573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091ae230feddf0b43b71578d9069bc82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collider: {fileID: 1575613576}
 --- !u!114 &1575613578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,9 +922,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a153a7e7d600c004b90ef7a09498bb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contact: {fileID: 1575613577}
+  contact: {fileID: 1130238874}
+  collider: {fileID: 1575613576}
   rigidbody: {fileID: 1130238871}
-  slideForce: 5
+  slideForce: 20
+  friction: 5000
 --- !u!1 &1584546732
 GameObject:
   m_ObjectHideFlags: 0

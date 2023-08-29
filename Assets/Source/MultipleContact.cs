@@ -11,6 +11,11 @@ public class MultipleContact : MonoBehaviour, IContact
     {
         contacts = new();
     }
+    void OnCollisionEnter(Collision other)
+    {
+        other.GetContacts(contacts);
+        hasContact = true;
+    }
     void OnCollisionStay(Collision other)
     {
         other.GetContacts(contacts);

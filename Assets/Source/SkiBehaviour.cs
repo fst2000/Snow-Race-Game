@@ -5,10 +5,10 @@ public class SkiBehaviour : MonoBehaviour
 {
     [SerializeField] MultipleContact contact;
     [SerializeField] new Collider collider;
-    ColliderContact colliderContact;
     [SerializeField] new Rigidbody rigidbody;
     [SerializeField] float slideForce;
     [SerializeField] float friction;
+    IContact colliderContact;
     void Start()
     {
         colliderContact = new ColliderContact(contact, collider);

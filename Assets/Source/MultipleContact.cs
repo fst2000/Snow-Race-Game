@@ -32,8 +32,4 @@ public class MultipleContact : MonoBehaviour, IContact
             hasContact = false;   
         }
     }
-    void Update()
-    {
-        Debug.Log(hasContact);
-    }
 }

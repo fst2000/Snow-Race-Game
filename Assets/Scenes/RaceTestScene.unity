@@ -326,7 +326,7 @@ MonoBehaviour:
   contact: {fileID: 1130238874}
   collider: {fileID: 618909218}
   rigidbody: {fileID: 1130238871}
-  slideForce: 10
+  slideForce: 5
   friction: 0.2
 --- !u!1001 &619021683
 PrefabInstance:
@@ -490,8 +490,8 @@ MonoBehaviour:
   contact: {fileID: 1130238874}
   collider: {fileID: 856579984}
   rigidbody: {fileID: 1130238871}
-  slideForce: 20
-  friction: 5000
+  slideForce: 5
+  friction: 1
 --- !u!1 &884250807 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5148817236446094103, guid: 2c778cf1b42073a4482a9e23da298e62, type: 3}
@@ -697,6 +697,10 @@ PrefabInstance:
     - target: {fileID: 6278562066881361100, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278562066881361100, guid: 1c364bfaa79c0da4c89ea105ab5f8bc8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -925,8 +929,8 @@ MonoBehaviour:
   contact: {fileID: 1130238874}
   collider: {fileID: 1575613576}
   rigidbody: {fileID: 1130238871}
-  slideForce: 20
-  friction: 5000
+  slideForce: 5
+  friction: 1
 --- !u!1 &1584546732
 GameObject:
   m_ObjectHideFlags: 0

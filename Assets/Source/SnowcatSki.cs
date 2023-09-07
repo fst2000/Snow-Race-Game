@@ -6,8 +6,9 @@ public class SnowcatSki : ISki
     Vector3 center;
     Vector3 size;
     CapsuleCollider collider;
-
-    public SnowcatSki(GameObject ski, IContact snowcatContact, Vector3 center, float radius, float length)
+    float slideForce;
+    float friction;
+    public SnowcatSki(GameObject ski, IContact snowcatContact, Vector3 center, float radius, float length, float slideForce, float friction)
     {
         PhysicMaterial skiMaterial = new PhysicMaterial();
         skiMaterial.dynamicFriction = 0;
@@ -21,13 +22,16 @@ public class SnowcatSki : ISki
         collider.height = length;
         collider.material = skiMaterial;
         skiContact = new ColliderContact(snowcatContact, collider);
+        this.ski = ski;
+        this.slideForce = slideForce;
+        this.friction = friction;
     }
-    public void Slide(float slideForce, float friction)
+    public void Slide()
     {
         skiContact.Accept(contact =>
         {
             Transform transform = ski.transform;
-            Rigidbody rigidbody = ski.GetComponent<Rigidbody>();
+            Rigidbody rigidbody = ski.GetComponentInParent<Rigidbody>();
             Vector3 slideForceDirection = Vector3.Cross(contact.thisCollider.transform.forward, contact.normal);
             float frictionScalar = Vector3.Dot(transform.right, rigidbody.GetPointVelocity(contact.point));
             rigidbody.AddForceAtPosition(slideForceDirection * frictionScalar * slideForce, contact.point);

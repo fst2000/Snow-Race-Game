@@ -15,10 +15,10 @@ public class ColliderContact : IContact
     {
         contact.Accept(c =>
         {
+            Debug.Log(c.thisCollider.gameObject.name);
             if(c.thisCollider == collider)
             {
                 action(c);
-                Debug.Log(c.thisCollider.gameObject.name);
             }
         });
     }

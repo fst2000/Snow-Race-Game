@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MultipleContact : MonoBehaviour, IContact
 {
     List<ContactPoint> contacts;
-    bool hasContact;
     void Start()
     {
         contacts = new();
@@ -14,22 +14,20 @@ public class MultipleContact : MonoBehaviour, IContact
     void OnCollisionEnter(Collision other)
     {
         other.GetContacts(contacts);
-        hasContact = true;
     }
     void OnCollisionStay(Collision other)
     {
         other.GetContacts(contacts);
-        hasContact = true;
+    }
+    void OnCollisionExit()
+    {
+        contacts.Clear();
     }
     public void Accept(Action<ContactPoint> action)
     {
-        if(hasContact)
+        foreach(var c in contacts)
         {
-            foreach(var c in contacts)
-            {
-                action(c);
-            }
-            hasContact = false;   
-        }
+            action(c);
+        } 
     }
 }
